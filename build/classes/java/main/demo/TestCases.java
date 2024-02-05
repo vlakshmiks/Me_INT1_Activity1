@@ -133,5 +133,17 @@ public class TestCases {
         System.out.println("end Test case: testCase05");
     }
 
+    //Automate_IMDB_ratings
+    public  void testCase06() throws InterruptedException{
+        System.out.println("Start Test case: testCase06");
+        driver.get("https://www.imdb.com/chart/top/");
+        Thread.sleep(5000);
+        WebElement highestRated = driver.findElement(By.xpath("(//h3)[2]"));
+        System.out.println("Hightest rated movie is: " + highestRated.getText());
+        List<WebElement> moviesCount = driver.findElements(By.xpath("(//ul[@role='presentation'])[1]/li"));
+        System.out.println("Movies count is: " + moviesCount.size());
+        System.out.println("end Test case: testCase06");
+    }
+
 
 }
