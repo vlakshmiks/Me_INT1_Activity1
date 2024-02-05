@@ -69,5 +69,37 @@ public class TestCases {
         System.out.println("end Test case: testCase03");
     }
 
+    //Automate_nested frames text
+    public  void testCase04() throws InterruptedException{
+        System.out.println("Start Test case: testCase04");
+        driver.get("https://the-internet.herokuapp.com/nested_frames");
+        driver.switchTo().frame("frame-top");
+        //driver.switchTo().frame("frameset-middle");
+        driver.switchTo().frame("frame-left");
+        WebElement textElement = driver.findElement(By.xpath("//html/body"));
+        System.out.println("text in the left frame is: " + textElement.getText());
+        driver.switchTo().parentFrame();
+
+        driver.switchTo().frame("frame-middle");
+        textElement = driver.findElement(By.xpath("//html/body"));
+        System.out.println("text in the middle frame is: " + textElement.getText());
+        driver.switchTo().parentFrame();
+
+        driver.switchTo().frame("frame-right");
+        textElement = driver.findElement(By.xpath("//html/body"));
+        System.out.println("text in the right frame is: " + textElement.getText());
+        driver.switchTo().parentFrame();
+
+        driver.switchTo().defaultContent();
+        driver.switchTo().frame("frame-bottom");
+        textElement = driver.findElement(By.xpath("//html/body"));
+        System.out.println("text in the botton frame is: " + textElement.getText());
+        driver.switchTo().parentFrame();
+
+
+        
+        System.out.println("end Test case: testCase04");
+    }
+
 
 }
