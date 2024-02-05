@@ -2,6 +2,9 @@ package demo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -99,6 +102,35 @@ public class TestCases {
 
         
         System.out.println("end Test case: testCase04");
+    }
+
+    //Automate_window_handle
+    public  void testCase05() throws InterruptedException{
+        System.out.println("Start Test case: testCase05");
+        driver.get("https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_open");
+        Thread.sleep(5000);
+        driver.switchTo().frame("iframeResult");
+        WebElement tryIt = driver.findElement(By.xpath("//button[text()='Try it']"));
+        //WebElement tryIt = driver.findElement(By.xpath("//html/body/button"));
+        String parentWindowHandle = driver.getWindowHandle();
+        tryIt.click();
+        Set<String> windows = driver.getWindowHandles(); 
+        System.out.println(windows); 
+        
+        for (String window : windows) 
+        { 
+            if (window.equalsIgnoreCase(parentWindowHandle)) {
+
+            } else {
+                driver.switchTo().window(window);
+                break;
+            }
+        }
+        System.out.println("url of the child window is: " + driver.getCurrentUrl());
+        System.out.println("title of the child window is: " + driver.getTitle());
+        driver.close();
+        driver.switchTo().window(parentWindowHandle);
+        System.out.println("end Test case: testCase05");
     }
 
 
